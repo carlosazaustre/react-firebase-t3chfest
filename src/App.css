@@ -30,6 +30,35 @@
   cursor: pointer;
 }
 
+.App-card {
+  border: 1px solid #eaeaea;
+  margin: 0.5em;
+}
+
+.App-card-image {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.App-card-image img {
+  margin-top: 0.5em;
+  width: 95%;
+}
+
+.App-card-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.App-card-avatar {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50%;
+  margin: 0.5em;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

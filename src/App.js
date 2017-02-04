@@ -15,6 +15,7 @@ class App extends Component {
     };
 
     this.handleAuth = this.handleAuth.bind(this);
+    this.handleUpload = this.handleUpload.bind(this);
   }
 
   componentWillMount () {
@@ -69,10 +70,14 @@ class App extends Component {
       // Obtenemos la referencia a nuestra base de datos 'pictures'
       // Creamos un nuevo registro en ella
       // Guardamos la URL del enlace en la DB
-      const pictureUpload = task.snapshot.downloadURL;
+      const record = {
+        photoURL: this.state.user.photoURL,
+        displayName: this.state.user.displayName,
+        image: task.snapshot.downloadURL
+      }
       const dbRef = firebase.database().ref('pictures');
       const newPicture = dbRef.push();
-      newPicture.set(pictureUpload);
+      newPicture.set(record);
     });
   }
 
@@ -87,17 +92,27 @@ class App extends Component {
       return (
         <div className="App-intro">
           <p className="App-intro">¡Hola, { this.state.user.displayName }!</p>
-          <FileUpload onUpload={ this.handleUpload }/>
-
-          {
-            this.state.pictures.map(picture => (
-              <img width="320" src={picture} />
-            ))
-          }
 
           <button onClick={this.handleLogout} className="App-btn">
             Salir
           </button>
+
+          <FileUpload onUpload={ this.handleUpload }/>
+
+          {
+            this.state.pictures.map(picture => (
+              <div className="App-card">
+                <figure className="App-card-image">
+                  <img width="320" src={picture.image} />
+                  <figCaption className="App-card-footer">
+                    <img className="App-card-avatar" src={picture.photoURL} alt={picture.displayName} />
+                    <span className="App-card-name">{picture.displayName}</span>
+                  </figCaption>
+                </figure>
+              </div>
+            )).reverse()
+          }
+
         </div>
 
       );
