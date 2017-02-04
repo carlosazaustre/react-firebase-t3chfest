@@ -18,6 +18,18 @@
   font-size: large;
 }
 
+.App-btn {
+  background-color: #ff9900;
+  outline: 0;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.2em;
+  padding: 0.5em 1em;
+  margin: 1em;
+  cursor: pointer;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
